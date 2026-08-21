@@ -147,9 +147,3 @@ Regression               │
 This project provides a practical comparison between traditional machine learning and transformer-based deep learning for Arabic dialect identification.
 
 The results show that **MARBERT outperformed the TF-IDF + Logistic Regression baseline** in both Accuracy and Macro F1 on the evaluated dataset.
-
----
-
-## Project Type
-
-**Individual Data Science / NLP Project**
