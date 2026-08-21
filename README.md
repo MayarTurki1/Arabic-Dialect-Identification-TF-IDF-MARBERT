@@ -1,158 +1,131 @@
 # Arabic Dialect Identification Using TF-IDF and MARBERT
 
-A comparative NLP project for Arabic dialect identification using a traditional machine learning approach with TF-IDF and Logistic Regression, and a transformer-based deep learning approach using MARBERT.
+A comparative NLP project for Arabic dialect classification, evaluating a traditional machine learning approach against a transformer-based language model.
 
-## Project Overview
+---
 
-This project focuses on identifying Arabic dialects from text using two different approaches:
+## Overview
 
-- Logistic Regression with TF-IDF
-- MARBERT transformer model
+Arabic dialects vary significantly in vocabulary, spelling, and linguistic patterns, making automatic dialect identification a challenging Natural Language Processing task.
 
-The project compares the performance of traditional machine learning and transformer-based deep learning for multi-class Arabic dialect classification.
+This project compares two approaches for Arabic dialect classification:
 
-The dataset contains 112,000 Arabic text samples from multiple Arabic-speaking countries and dialect classes.
+* **TF-IDF + Logistic Regression**
+* **MARBERT**
 
-## Objectives
+The goal is to evaluate the difference between a traditional text classification pipeline and a transformer-based Arabic language model.
 
-- Identify the dialect of an Arabic text sample.
-- Compare a traditional machine learning approach with a transformer-based approach.
-- Evaluate model performance using Accuracy and Macro F1-score.
-- Test the models on new Arabic text samples.
-- Develop an interactive interface for dialect prediction using MARBERT.
+---
 
 ## Dataset
 
-The dataset was obtained from the MADAR corpus and contains Arabic text samples associated with different countries and dialects.
+The dataset was obtained from **Kaggle** and contains approximately **112,000 Arabic text samples** representing multiple Arabic dialects.
 
-The dataset contains 112,000 records and 7 columns, including:
+The dataset was prepared and processed before training the classification models.
 
-- `lang`
-- `sent`
-- `city`
-- `country_id`
-- `country`
-- `city_id`
-- `source`
-
-The `sent` column contains the Arabic text, while the `country` column is used as the target label for dialect classification.
-
-## Arabic Text Preprocessing
-
-The text preprocessing pipeline includes:
-
-- Removing Arabic diacritics
-- Normalizing Arabic characters
-- Removing non-Arabic characters
-- Reducing repeated characters
-- Normalizing whitespace
-- Removing rows with missing text or labels
-
-The processed text is then used for model training and evaluation.
+---
 
 ## Methodology
 
-The project follows the following workflow:
+### 1. TF-IDF + Logistic Regression
 
-**Data Loading → Data Exploration → Text Preprocessing → Label Encoding → Train/Test Split → Model Training → Evaluation → Model Comparison**
+A traditional machine learning pipeline was implemented using:
 
-### 1. Logistic Regression with TF-IDF
+* Text preprocessing
+* TF-IDF feature extraction
+* Logistic Regression classification
 
-The traditional machine learning approach uses:
+TF-IDF was used to convert Arabic text into numerical feature representations before training the classifier.
 
-- TF-IDF Vectorization
-- Unigrams and bigrams
-- Maximum of 50,000 features
-- Minimum document frequency of 3
-- Logistic Regression with balanced class weights
-
-The dataset is split into 85% training data and 15% testing data.
+---
 
 ### 2. MARBERT
 
-The deep learning approach uses the pretrained:
+A transformer-based approach was implemented using **MARBERT**, an Arabic language model designed for processing Arabic and dialectal text.
 
-`UBC-NLP/MARBERT`
+The model was fine-tuned for the Arabic dialect classification task.
 
-The model is fine-tuned for multi-class Arabic dialect classification.
+The notebook also includes an interactive **Gradio interface** for testing the fine-tuned MARBERT model on Arabic text.
 
-Training configuration includes:
-
-- Learning rate: 1e-5
-- Training batch size: 16
-- Evaluation batch size: 32
-- Maximum sequence length: 128
-- Epochs: 2
-- Weight decay: 0.02
-- AdamW optimizer
-- Early stopping
+---
 
 ## Results
 
-The two approaches achieved the following results:
+The two approaches were evaluated and compared using classification metrics.
 
-| Model | Accuracy | F1 Macro |
-|---|---:|---:|
-| Logistic Regression (TF-IDF) | 72.43% | 60.91% |
-| **MARBERT** | **79.25%** | **67.51%** |
+| Model                        |   Accuracy |   Macro F1 |
+| ---------------------------- | ---------: | ---------: |
+| TF-IDF + Logistic Regression |            |            |
+| MARBERT                      | **79.25%** | **67.51%** |
 
-### Key Finding
+The results demonstrate the performance difference between the traditional TF-IDF-based approach and the transformer-based MARBERT model for Arabic dialect classification.
 
-MARBERT achieved better performance than Logistic Regression with TF-IDF on the evaluated dataset.
+> Detailed evaluation results and visualizations are available in the project notebook.
 
-The results show an improvement in both Accuracy and Macro F1-score when using the transformer-based approach.
-
-## Model Testing
-
-The Logistic Regression model was tested on new Arabic sentences to demonstrate dialect prediction.
-
-Example inputs included Arabic sentences representing different dialects, such as:
-
-- `وين اقرب مطعم كشري؟`
-- `وش الأخبار عندكم اليوم`
-- `شنو أحسن قهوة في الدوحة؟`
-
-## Interactive Interface
-
-A Gradio interface was developed using the fine-tuned MARBERT model.
-
-The interface allows users to enter an Arabic sentence and receive:
-
-- Predicted dialect
-- Prediction confidence
+---
 
 ## Technologies
 
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- PyTorch
-- Hugging Face Transformers
-- Hugging Face Datasets
-- MARBERT
-- TF-IDF
-- Logistic Regression
-- Matplotlib
-- Seaborn
-- Gradio
-- Google Colab
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* Transformers
+* Hugging Face
+* MARBERT
+* TF-IDF
+* Logistic Regression
+* NLP
+* Gradio
+* Jupyter Notebook
+
+---
+
+## Project Workflow
+
+```text
+Arabic Text
+    │
+    ▼
+Text Preprocessing
+    │
+    ├───────────────┐
+    ▼               ▼
+TF-IDF           MARBERT
+    │               │
+    ▼               ▼
+Logistic          Fine-Tuning
+Regression           │
+    │               │
+    └───────┬───────┘
+            ▼
+    Dialect Classification
+            │
+            ▼
+      Model Evaluation
+```
+
+---
+
+## Interactive Demo
+
+The project notebook includes a **Gradio interface** that allows users to enter Arabic text and test the fine-tuned MARBERT model for dialect prediction.
+
+---
 
 ## Repository Contents
 
-- `Project_NLP_Arabic_Dialect_Identification_Using_Machine_Learning_and_MARBERT (1).ipynb` — Project implementation, preprocessing, model training, evaluation, and comparison
-- `df_train.csv` — Dataset
+* `Arabic_Dialect_Identification_TF_IDF_MARBERT.ipynb` — Complete project workflow, model training, evaluation, and Gradio interface.
+* `df_train.csv` — Dataset used in the project.
 
-## Models Comparison
+---
 
-The project demonstrates the difference between:
+## Key Takeaway
 
-**Traditional Machine Learning**
+This project provides a practical comparison between a traditional machine learning approach and a transformer-based model for Arabic dialect identification, highlighting the application of NLP techniques to Arabic and dialectal text.
 
-TF-IDF → Logistic Regression
+---
 
-and
+## Project Type
 
-**Transformer-based Deep Learning**
-
-MARBERT → Fine-tuning → Dialect Classification
+**Individual Data Science / NLP Project**
